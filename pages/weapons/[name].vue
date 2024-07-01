@@ -1,11 +1,19 @@
 <template>
+  <section class="weapon__list">
+    <NuxtLink :to="`/weapons/${extraWeapon.name}`" class="weapon__thumb" v-for="extraWeapon in weaponsList">
+      <img :src="extraWeapon.image" alt="">
+      <span>{{ extraWeapon.name }}</span>
+    </NuxtLink>
+  </section>
   <div>{{ weapon.name }}</div>
+  <WeaponCard :weapon="weapon" />
 </template>
 <script setup>
 
 const route = useRoute();
 
 const weaponName = route.params.name;
+let { data: weaponsList } = ref([]);
 
 // because gql is case sensitive, each word needs to be capitalized
 function capitalizeFirstLetter() {
@@ -39,7 +47,6 @@ const { data } = await useAsyncQuery(query);
 const weapon = data.value.weapon[0];
 
 getWeapons();
-
 async function getWeapons() {
   const weaponCategory = data.value.weapon[0].category;
 
@@ -53,8 +60,7 @@ async function getWeapons() {
   `;
 
 const { data: weapons } = await useAsyncQuery(query2);
-
-console.log(weapons);
+weaponsList = weapons.value.weapon;
 }
 
 </script>
