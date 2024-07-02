@@ -5,7 +5,14 @@
       <span>{{ extraWeapon.name }}</span>
     </NuxtLink>
   </section>
-  <div>{{ weapon.name }}</div>
+  <section>
+    <h1>{{ weapon.name }}</h1>
+    <p>{{ weapon.description }}</p>
+    <div>
+      <h2>More Info:</h2>
+      <NuxtLink target="_blank" :to="`https://eldenring.wiki.fextralife.com/${weapon.name}`">https://eldenring.wiki.fextralife.com/{{ weapon.name }}</NuxtLink>
+    </div>
+  </section>
   <WeaponCard :weapon="weapon" />
 </template>
 <script setup>
@@ -46,8 +53,6 @@ const query = gql`
 const { data } = await useAsyncQuery(query);
 const weapon = data.value.weapon[0];
 
-getWeapons();
-async function getWeapons() {
   const weaponCategory = data.value.weapon[0].category;
 
   const query2 = gql`
@@ -61,6 +66,5 @@ async function getWeapons() {
 
 const { data: weapons } = await useAsyncQuery(query2);
 weaponsList = weapons.value.weapon;
-}
 
 </script>
