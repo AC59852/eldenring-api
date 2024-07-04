@@ -16,8 +16,10 @@
   <WeaponCard :weapon="weapon" />
 </template>
 <script setup>
+import mockData from '@/assets/data.json';
 
 const route = useRoute();
+let weapon = ref({});
 
 const weaponName = route.params.name;
 let { data: weaponsList } = ref([]);
@@ -34,7 +36,8 @@ function capitalizeFirstLetter() {
    return splitStr.join(' ');
 }
 
-const query = gql`
+try {
+  const query = gql`
   query {
     weapon(name: "${capitalizeFirstLetter(weaponName)}") {
       name,
@@ -50,10 +53,18 @@ const query = gql`
   }
 `;
 
-const { data } = await useAsyncQuery(query);
-const weapon = data.value.weapon[0];
+  const { data } = await useAsyncQuery(query);
+  if(data.value.weapon.length > 0) {
+    weapon = data.value.weapon[0];
+  } else {
+    weapon = mockData.mockCard[0];
+  }
+} catch (error) {
+  console.error(error);
+}
 
-  const weaponCategory = data.value.weapon[0].category;
+try {
+  const weaponCategory = weapon.category;
 
   const query2 = gql`
     query {
@@ -64,7 +75,14 @@ const weapon = data.value.weapon[0];
     }
   `;
 
-const { data: weapons } = await useAsyncQuery(query2);
-weaponsList = weapons.value.weapon;
+  const { data } = await useAsyncQuery(query2);
+  if (data.value.weapon.length > 0) {
+    weaponsList = data.value.weapon;
+  } else {
+    weaponsList = [];
+  }
+} catch (error) {
+  console.error(error);
+}
 
 </script>

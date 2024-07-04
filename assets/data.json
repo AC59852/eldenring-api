@@ -1,0 +1,256 @@
+{
+  "weapons": [
+    {
+      "id": 1,
+      "name": "Dagger",
+      "img": "/"
+    },
+    {
+      "id": 2,
+      "name": "Straight Sword",
+      "img": "/"
+    },
+    {
+      "id": 3,
+      "name": "Greatsword",
+      "img": "/"
+    },
+    {
+      "id": 4,
+      "name": "Colossal Sword",
+      "img": "/"
+    },
+    {
+      "id": 5,
+      "name": "Thrusting Sword",
+      "img": "/"
+    },
+    {
+      "id": 6,
+      "name": "Heavy Thrusting Sword",
+      "img": "/"
+    },
+    {
+      "id": 7,
+      "name": "Curved Sword",
+      "img": "/"
+    },
+    {
+      "id": 8,
+      "name": "Curved Greatsword",
+      "img": "/"
+    },
+    {
+      "id": 9,
+      "name": "Katana",
+      "img": "/"
+    },
+    {
+      "id": 10,
+      "name": "Twinblade",
+      "img": "/"
+    },
+    {
+      "id": 11,
+      "name": "Axe",
+      "img": "/"
+    },
+    {
+      "id": 12,
+      "name": "Greataxe",
+      "img": "/"
+    },
+    {
+      "id": 13,
+      "name": "Hammer",
+      "img": "/"
+    },
+    {
+      "id": 14,
+      "name": "Flail",
+      "img": "/"
+    },
+    {
+      "id": 15,
+      "name": "Great Hammer",
+      "img": "/"
+    },
+    {
+      "id": 16,
+      "name": "Colossal Weapon",
+      "img": "/"
+    },
+    {
+      "id": 17,
+      "name": "Spear",
+      "img": "/"
+    },
+    {
+      "id": 18,
+      "name": "Great Spear",
+      "img": "/"
+    },
+    {
+      "id": 19,
+      "name": "Halberd",
+      "img": "/"
+    },
+    {
+      "id": 20,
+      "name": "Reaper",
+      "img": "/"
+    },
+    {
+      "id": 21,
+      "name": "Whip",
+      "img": "/"
+    },
+    {
+      "id": 22,
+      "name": "Fist",
+      "img": "/"
+    },
+    {
+      "id": 23,
+      "name": "Claw",
+      "img": "/"
+    },
+    {
+      "id": 24,
+      "name": "Light Bow",
+      "img": "/"
+    },
+    {
+      "id": 25,
+      "name": "Bow",
+      "img": "/"
+    },
+    {
+      "id": 26,
+      "name": "Greatbow",
+      "img": "/"
+    },
+    {
+      "id": 27,
+      "name": "Crossbow",
+      "img": "/"
+    },
+    {
+      "id": 28,
+      "name": "Ballista",
+      "img": "/"
+    },
+    {
+      "id": 29,
+      "name": "Glintstone Staff",
+      "img": "/"
+    },
+    {
+      "id": 30,
+      "name": "Sacred Seal",
+      "img": "/"
+    },
+    {
+      "id": 31,
+      "name": "Torch",
+      "img": "/"
+    }
+  ],
+  "mockCard": [
+    {
+      "name": "Sword of Night and Flame",
+      "description": "Storied sword and treasure of Caria Manor. One of the legendary armaments. Astrologers, who preceded the sroveres, established themselves in mountaintops that nearly touched the sky, and considered the Fire Giants their neighbors.",
+      "image": "/",
+      "category": "Straight Sword",
+      "weight": "4",
+      "attack": [
+        {
+          "name": "Phy",
+          "amount": 87
+        },
+        {
+          "name": "Mag",
+          "amount": 56
+        },
+        {
+          "name": "Fire",
+          "amount": 56
+        },
+        {
+          "name": "Ligt",
+          "amount": 0
+        },
+        {
+          "name": "Holy",
+          "amount": 0
+        },
+        {
+          "name": "Crit",
+          "amount": 100
+        }
+      ],
+      "defence": [
+        {
+          "name": "Phy",
+          "amount": 36
+        },
+        {
+          "name": "Mag",
+          "amount": 42
+        },
+        {
+          "name": "Fire",
+          "amount": 42
+        },
+        {
+          "name": "Ligt",
+          "amount": 26
+        },
+        {
+          "name": "Holy",
+          "amount": 26
+        },
+        {
+          "name": "Boost",
+          "amount": 31
+        }
+      ],
+      "requiredAttributes": [
+        {
+          "name": "Str",
+          "amount": 12
+        },
+        {
+          "name": "Dex",
+          "amount": 12
+        },
+        {
+          "name": "Int",
+          "amount": 24
+        },
+        {
+          "name": "Faith",
+          "amount": 24
+        }
+      ],
+      "scalesWith": [
+        {
+          "name": "Str",
+          "scaling": "E"
+        },
+        {
+          "name": "Dex",
+          "scaling": "E"
+        },
+        {
+          "name": "Int",
+          "scaling": "D"
+        },
+        {
+          "name": "Faith",
+          "scaling": "D"
+        }
+      ]
+    }
+  ]
+}
