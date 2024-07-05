@@ -55,7 +55,7 @@
 
 .hero__text {
   background: rgba(31, 27, 27, 0.2);
-  backdrop-filter: blur( 5.5px );
+  backdrop-filter: blur( 7.5px );
   -webkit-backdrop-filter: blur( 7.5px );
   border-radius: 10px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );

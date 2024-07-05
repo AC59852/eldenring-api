@@ -3,157 +3,157 @@
     {
       "id": 1,
       "name": "Dagger",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 2,
       "name": "Straight Sword",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 3,
       "name": "Greatsword",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 4,
       "name": "Colossal Sword",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 5,
       "name": "Thrusting Sword",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 6,
       "name": "Heavy Thrusting Sword",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 7,
       "name": "Curved Sword",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 8,
       "name": "Curved Greatsword",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 9,
       "name": "Katana",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 10,
       "name": "Twinblade",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 11,
       "name": "Axe",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 12,
       "name": "Greataxe",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 13,
       "name": "Hammer",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 14,
       "name": "Flail",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 15,
       "name": "Great Hammer",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 16,
       "name": "Colossal Weapon",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 17,
       "name": "Spear",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 18,
       "name": "Great Spear",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 19,
       "name": "Halberd",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 20,
       "name": "Reaper",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 21,
       "name": "Whip",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 22,
       "name": "Fist",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 23,
       "name": "Claw",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 24,
       "name": "Light Bow",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 25,
       "name": "Bow",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 26,
       "name": "Greatbow",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 27,
       "name": "Crossbow",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 28,
       "name": "Ballista",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 29,
       "name": "Glintstone Staff",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 30,
       "name": "Sacred Seal",
-      "img": "/"
+      "image": "/"
     },
     {
       "id": 31,
       "name": "Torch",
-      "img": "/"
+      "image": "/"
     }
   ],
   "mockCard": [
@@ -251,6 +251,52 @@
           "scaling": "D"
         }
       ]
+    }
+  ],
+  "mockExtraWeapons": [
+    {
+      "name": "Sword",
+      "image": "/sonaf.webp"
+    },
+    {
+      "name": "Sword",
+      "image": "/sonaf.webp"
+    },
+    {
+      "name": "Sword",
+      "image": "/sonaf.webp"
+    },
+    {
+      "name": "Sword",
+      "image": "/sonaf.webp"
+    },
+    {
+      "name": "Sword",
+      "image": "/sonaf.webp"
+    },
+    {
+      "name": "Sword",
+      "image": "/sonaf.webp"
+    },
+    {
+      "name": "Sword",
+      "image": "/sonaf.webp"
+    },
+    {
+      "name": "Sword",
+      "image": "/sonaf.webp"
+    },
+    {
+      "name": "Sword",
+      "image": "/sonaf.webp"
+    },
+    {
+      "name": "Sword",
+      "image": "/sonaf.webp"
+    },
+    {
+      "name": "Sword",
+      "image": "/sonaf.webp"
     }
   ]
 }
