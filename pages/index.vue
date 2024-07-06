@@ -12,7 +12,7 @@
           </div>
         </form>
         <div class="hero__categories">
-          <NuxtLink style="display: block;" v-for="category in categories" :to="`/${category.name}`">{{ category.name }}</NuxtLink>
+          <NuxtLink style="display: block;" v-for="category in categories" :to="`/categories/${category.route}`">{{ category.name }}</NuxtLink>
         </div>
       </div>
     </section>
@@ -22,21 +22,21 @@
   const search = defineModel();
 
   const categories = [
-    { id: 1, name: 'Ammos' },
-    { id: 2, name: 'Armors' },
-    { id: 3, name: 'Ashes of War' },
-    { id: 4, name: 'Bosses' },
-    { id: 5, name: 'Classes' },
-    { id: 6, name: 'Creatures' },
-    { id: 7, name: 'Incantations' },
-    { id: 8, name: 'Items' },
-    { id: 9, name: 'Locations' },
-    { id: 10, name: 'NPCs' },
-    { id: 11, name: 'Shields' },
-    { id: 12, name: 'Sorceries' },
-    { id: 13, name: 'Spirits' },
-    { id: 14, name: 'Talismans' },
-    { id: 15, name: 'Weapons' },
+    { id: 1, name: 'Ammos', route: 'ammo' },
+    { id: 2, name: 'Armors', route: 'armor' },
+    { id: 3, name: 'Ashes of War', route: 'ashOfWar' },
+    { id: 4, name: 'Bosses', route: 'boss' },
+    { id: 5, name: 'Classes', route: 'class' },
+    { id: 6, name: 'Creatures', route: 'creature'},
+    { id: 7, name: 'Incantations', route: 'incantation'},
+    { id: 8, name: 'Items', route: 'item'},
+    { id: 9, name: 'Locations', route: 'location'},
+    { id: 10, name: 'NPCs', route: 'npc'},
+    { id: 11, name: 'Shields', route: 'shield'},
+    { id: 12, name: 'Sorceries', route: 'sorcery'},
+    { id: 13, name: 'Spirits', route: 'spirit'},
+    { id: 14, name: 'Talismans', route: 'talisman'},
+    { id: 15, name: 'Weapons', route: 'weapon'},
   ];
 
 </script>

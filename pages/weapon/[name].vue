@@ -1,7 +1,7 @@
 <template>
   <section class="weapon">
     <section class="weapon__list">
-      <NuxtLink :to="`/weapons/${extraWeapon.name}`" class="weapon__thumb" v-for="extraWeapon in weaponsList">
+      <NuxtLink :to="`/weapon/${extraWeapon.name}`" class="weapon__thumb" v-for="extraWeapon in weaponsList">
         <img :src="extraWeapon.image" alt="">
         <h3>{{ extraWeapon.name }}</h3>
       </NuxtLink>
@@ -11,7 +11,7 @@
       <p class="weapon__desc">{{ weapon.description }}</p>
       <div>
         <h2>More Info:</h2>
-        <NuxtLink target="_blank" :to="`https://eldenring.wiki.fextralife.com/${weapon.name}`">https://eldenring.wiki.fextralife.com/{{ weapon.name }}</NuxtLink>
+        <NuxtLink target="_blank" class="weapon__link" :to="`https://eldenring.wiki.fextralife.com/${weapon.name}`">https://eldenring.wiki.fextralife.com/{{ weapon.name }}</NuxtLink>
       </div>
     </section>
     <WeaponCard :weapon="weapon" class="weapon__card" />
@@ -91,6 +91,29 @@ try {
   console.error(error);
 }
 
+useSeoMeta({
+  title: () => `${weapon.name} - Elden Ring Item Search`,
+  ogTitle: () => `${weapon.name} - Elden Ring Item Search`,
+  description: () => weapon.description,
+  ogDescription: () => weapon.description,
+  image: () => weapon.image,
+  ogImage: () => weapon.image,
+  ogImageHeight: 200,
+  ogImageWidth: 200,
+  ogSiteName: 'Elden Ring Item Search',
+  ogUrl: () => `https://elden-ring-items.vercel.app/weapon/${weapon.name}`,
+  author: 'Austin Caron',
+  creator: 'https://austincaron.com',
+  ogType: 'website',
+  ogImageAlt: () => `${weapon.name} - Elden Ring Item Search`,
+  twitterCard: 'summary_large_image',
+  twitterTitle: () => `${weapon.name} - Elden Ring Item Search`,
+  twitterDescription: () => weapon.description,
+  twitterImage: () => weapon,
+  twitterImageAlt: () => `${weapon.name} - Elden Ring Item Search`,
+  themeColor: '#103230',
+})
+
 </script>
 <style>
 .weapon {
@@ -110,9 +133,11 @@ try {
   align-items: center;
   align-self: center;
   gap: 1rem;
-  max-width: 200px;
+  max-width: 220px;
   height: 88%;
   overflow-y: auto;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .weapon__thumb {
@@ -147,15 +172,25 @@ try {
   font-size: 92px;
   font-weight: bold;
   color: white;
+  max-width: 90%;
+  margin: 0 auto
 }
 
 .weapon__desc {
   font-size: 1.4rem;
   color: white;
-  margin: 40px 0 20px;
+  margin: 40px auto 20px;
   line-height: 130%;
   font-weight: 500;
   max-width: 90%;
+}
+
+.weapon__link {
+  color: white;
+  font-size: 1.4rem;
+  max-width: 90%;
+  margin: 0 auto;
+  display: block;
 }
 
 .weapon__card {
