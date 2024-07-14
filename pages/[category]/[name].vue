@@ -22,6 +22,7 @@ import mockData from '@/assets/data.json';
 
 const route = useRoute();
 let weapon = ref({});
+const category = route.params.category;
 
 const weaponName = route.params.name;
 let { data: weaponsList } = ref([]);
@@ -38,29 +39,60 @@ function capitalizeFirstLetter() {
    return splitStr.join(' ');
 }
 
+const categoryFields = {
+  ammo: ["name", "image", "description", "type", "passive", "attackPower {name, amount}"],
+  armor: ["name", "image", "description", "category", "weight", "dmgNegation {name, amount}", "resistance {name, amount}"],
+  ashOfWar: ["name", "image", "description", "affinity", "skill"],
+  boss: ["name", "image", "description", "location", "drops", "healthPoints"],
+  class: ["name", "image", "description", "stats {level, vigor, mind, endurance, strenght, dexterity, inteligence, faith, arcane}"],
+  creature: ["name", "image", "description", "location", "drops"],
+  incantation: ["name", "image", "description", "type", "cost", "slots", "effects", "requires"],
+  item: ["name", "image", "description", "type", "effect"],
+  location: ["name", "image", "description"],
+  npc: ["name", "image", "description", "location", "quote"],
+  shield: ["name", "image", "description", "category", "weight", "attack", "defence", "requiredAttributes", "scalesWith"],
+  sorcery: ["name", "image", "description", "type", "cost", "slots", "effects", "requires"],
+  spirit: ["name", "image", "description", "fpCost", "hpCost", "effects"],
+  talisman: ["name", "image", "description", "effects"],
+  weapon: ["name", "image", "description", "category", "weight", "attack {name, amount}", "defence {name, amount}", "requiredAttributes {name, amount}", "scalesWith {name, scaling}"],
+}
+
+// Get the fields for the current category, default to an empty array if not found
+const fields = categoryFields[category] || [];
+
+// Construct the fields string for the query
+const fieldsString = fields.join("\n");
+
+// if the category is "class", run a fetch on an api instead of a gql query
+
 try {
-  const query = gql`
-  query {
-    weapon(name: "${capitalizeFirstLetter(weaponName)}") {
-      name,
-      description,
-      image,
-      category, 
-      weight,
-      attack {name, amount},
-      defence {name, amount},
-      requiredAttributes {name, amount},
-      scalesWith {name, scaling},
-    }
-  }
-`;
+  if(category === "class") {
+    const response = await fetch(`https://eldenring.fanapis.com/api/classes?name=${weaponName}`);
+    const res = await response.json();
+    weapon = res.data[0];
+  } else {
+    const query = gql`
+      query {
+        ${category}(name: "${capitalizeFirstLetter(weaponName)}") {
+          ${fieldsString}
+        }
+      }
+    `;
+
+      // weight,
+      // attack {name, amount},
+      // defence {name, amount},
+      // requiredAttributes {name, amount},
+      // scalesWith {name, scaling},
 
   const { data } = await useAsyncQuery(query);
-  if(data.value.weapon.length > 0) {
-    weapon = data.value.weapon[0];
+  // if combine data.value and category
+  if(data.value[category].length > 0) {
+    weapon = data.value[category][0];
   } else {
     weapon = mockData.mockCard[0];
   }
+}
 } catch (error) {
   console.error(error);
 }
