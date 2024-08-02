@@ -5,15 +5,17 @@
         <h1 class="hero__title">Elden Ring Item Search</h1>
         <form @submit.prevent="searchItem($event)" class="hero__search">
           <div class="hero__search_input">
-            <input type="text" placeholder="Search" v-model="search" required>
+            <div class="hero__bar">
+              <input type="text" placeholder="Search" v-model="search" required>
+              <button>
+                <img src="@/assets/images/chevron-right.svg" alt="">
+              </button>
+            </div>
             <select v-model="selected" id="">
               <option v-for="category in categories" :key="category.id" :value="category.route">
                 {{ category.name }}
               </option>
             </select>
-            <button>
-              <img src="@/assets/images/chevron-right.svg" alt="">
-            </button>
           </div>
         </form>
         <div class="hero__categories">
@@ -50,6 +52,16 @@
     // send to categories page with search query
     router.push({ path: `/categories/${selected.value}`, query: { search: search.value } });
   }
+
+  onMounted(() => {
+    document.querySelector('.hero__search select').addEventListener('focus', function() {
+      document.querySelector('.hero__search input').classList.add('focused');
+    });
+
+    document.querySelector('.hero__search select').addEventListener('blur', function() {
+      document.querySelector('.hero__search input').classList.remove('focused');
+    });
+  });
 
 </script>
 <style>
@@ -106,7 +118,11 @@
 .hero__search_input {
   display: flex;
   align-items: center;
-  position: relative
+  position: relative;
+}
+
+.hero__bar {
+  position: relative;
 }
 
 .hero__search_input button {
@@ -141,8 +157,29 @@
   font-size: 1.4rem;
 }
 
-.hero__search input:focus {
+.hero__search input:focus, .hero__search input.focused {
   outline: none;
   width: 400px;
+}
+
+.hero__search select {
+  backdrop-filter: blur( 7.5px );
+  background: transparent;
+  color: white;
+  border: solid 1px rgba(255, 255, 255, 0.233);
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  position: absolute;
+  right: 0;
+  transform: translateX(110%);
+  height: 100%;
+}
+
+.hero__search option {
+  background: rgb(41, 41, 41);
+  color: white;
 }
 </style>
