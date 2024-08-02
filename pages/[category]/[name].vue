@@ -49,11 +49,11 @@ const categoryFields = {
   incantation: ["name", "image", "description", "type", "cost", "slots", "effects", "requires {name, amount}"],
   item: ["name", "image", "description", "type", "effect"],
   location: ["name", "image", "description"],
-  npc: ["name", "image", "description", "location", "quote"],
+  npc: ["name", "image", "description", "location", "quote", "role"],
   shield: ["name", "image", "description", "category", "weight", "attack {name, amount}", "defence {name, amount}", "requiredAttributes {name, amount}", "scalesWith {name, scaling}"],
   sorcery: ["name", "image", "description", "type", "cost", "slots", "effects", "requires {name, amount}"],
-  spirit: ["name", "image", "description", "fpCost", "hpCost", "effects"],
-  talisman: ["name", "image", "description", "effects"],
+  spirit: ["name", "image", "description", "fpCost", "hpCost", "effect"],
+  talisman: ["name", "image", "description", "effect"],
   weapon: ["name", "image", "description", "category", "weight", "attack {name, amount}", "defence {name, amount}", "requiredAttributes {name, amount}", "scalesWith {name, scaling}"],
 }
 
