@@ -3,9 +3,14 @@
     <section class="home__hero">
       <div class="hero__text">
         <h1 class="hero__title">Elden Ring Item Search</h1>
-        <form @submit.prevent="console.log('test')" class="hero__search">
+        <form @submit.prevent="searchItem($event)" class="hero__search">
           <div class="hero__search_input">
             <input type="text" placeholder="Search" v-model="search" required>
+            <select v-model="selected" id="">
+              <option v-for="category in categories" :key="category.id" :value="category.route">
+                {{ category.name }}
+              </option>
+            </select>
             <button>
               <img src="@/assets/images/chevron-right.svg" alt="">
             </button>
@@ -19,25 +24,32 @@
   </main>
 </template>
 <script setup>
-  const search = defineModel();
+  let search = defineModel();
+  const selected = ref('weapons');
+  const router = useRouter();
 
   const categories = [
-    { id: 1, name: 'Ammos', route: 'ammo' },
-    { id: 2, name: 'Armors', route: 'armor' },
-    { id: 3, name: 'Ashes of War', route: 'ashOfWar' },
-    { id: 4, name: 'Bosses', route: 'boss' },
-    { id: 5, name: 'Classes', route: 'class' },
-    { id: 6, name: 'Creatures', route: 'creature'},
-    { id: 7, name: 'Incantations', route: 'incantation'},
-    { id: 8, name: 'Items', route: 'item'},
-    { id: 9, name: 'Locations', route: 'location'},
-    { id: 10, name: 'NPCs', route: 'npc'},
-    { id: 11, name: 'Shields', route: 'shield'},
-    { id: 12, name: 'Sorceries', route: 'sorcery'},
-    { id: 13, name: 'Spirits', route: 'spirit'},
-    { id: 14, name: 'Talismans', route: 'talisman'},
-    { id: 15, name: 'Weapons', route: 'weapon'},
+    { id: 1, name: 'Ammos', route: 'ammos' },
+    { id: 2, name: 'Armors', route: 'armors' },
+    { id: 3, name: 'Ashes of War', route: 'ashes' },
+    { id: 4, name: 'Bosses', route: 'bosses' },
+    { id: 5, name: 'Classes', route: 'classes' },
+    { id: 6, name: 'Creatures', route: 'creatures'},
+    { id: 7, name: 'Incantations', route: 'incantations'},
+    { id: 8, name: 'Items', route: 'items'},
+    { id: 9, name: 'Locations', route: 'locations'},
+    { id: 10, name: 'NPCs', route: 'npcs'},
+    { id: 11, name: 'Shields', route: 'shields'},
+    { id: 12, name: 'Sorceries', route: 'sorceries'},
+    { id: 13, name: 'Spirits', route: 'spirits'},
+    { id: 14, name: 'Talismans', route: 'talismans'},
+    { id: 15, name: 'Weapons', route: 'weapons'},
   ];
+
+  const searchItem = (event) => {
+    // send to categories page with search query
+    router.push({ path: `/categories/${selected.value}`, query: { search: search.value } });
+  }
 
 </script>
 <style>

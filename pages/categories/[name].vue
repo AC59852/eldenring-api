@@ -24,44 +24,22 @@ let page = ref(1);
 
 
 console.log(route.params.name);
-  try {
-    const query = gql`
-      query {
-        ${route.params.name}(limit: 20, page: ${page.value}) {
-          name,
-          image
-        }
-      }
-    `;
-
-    const { data } = await useAsyncQuery(query);
-
-    console.log(data.value[route.params.name]);
-    items.value = [...data.value[route.params.name]];
-  } catch (error) {
-    console.error(error);
-  }
 
   let fetchItems = async () => {
-    try {
-      const query = gql`
-        query {
-          ${route.params.name}(limit: 20, page: ${page.value}) {
-            name,
-            image
-          }
-        }
-      `;
-
-      const { data } = await useAsyncQuery(query);
-
-      items.value = [...items.value, ...data.value[route.params.name]];
-    } catch (error) {
-      console.error(error);
+    if(route.query.search) {
+      const response = await fetch(`https://eldenring.fanapis.com/api/${route.params.name}?name=${route.query.search}`);
+      const res = await response.json();
+      items.value = [...items.value, ...res.data];
+      return;
+    } else {
+      const response = await fetch(`https://eldenring.fanapis.com/api/${route.params.name}?page=${page.value}`);
+      const res = await response.json();
+      items.value = [...items.value, ...res.data];
     }
   }
 
-  // if the user scrolls to the bottom of the container, load more items
+  fetchItems();
+
   onMounted(() => {
     const container = document.querySelector('.categories__items');
     container.addEventListener('scroll', () => {
