@@ -10,7 +10,7 @@
       <h1 class="weapon__name">{{ weapon.name }}</h1>
       <p class="weapon__desc">{{ weapon.description }}</p>
       <div>
-        <h2>More Info:</h2>
+        <h2 class="weapon__desc">More Info:</h2>
         <NuxtLink target="_blank" class="weapon__link" :to="`https://eldenring.wiki.fextralife.com/${weapon.name}`">https://eldenring.wiki.fextralife.com/{{ weapon.name }}</NuxtLink>
       </div>
     </section>
@@ -19,6 +19,7 @@
 </template>
 <script setup>
 import mockData from '@/assets/data.json';
+console.log("test")
 
 const route = useRoute();
 let weapon = ref({});
@@ -27,86 +28,29 @@ const category = route.params.category;
 const weaponName = route.params.name;
 let { data: weaponsList } = ref([]);
 
-// because gql is case sensitive, each word needs to be capitalized
-function capitalizeFirstLetter() {
-  var splitStr = route.params.name.toLowerCase().split(' ');
-   for (var i = 0; i < splitStr.length; i++) {
-       // You do not need to check if i is larger than splitStr length, as your for does that for you
-       // Assign it back to the array
-       splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
-   }
-   // Directly return the joined string
-   return splitStr.join(' ');
-}
-
-const categoryFields = {
-  ammo: ["name", "image", "description", "type", "passive", "attackPower {name, amount}"],
-  armor: ["name", "image", "description", "category", "weight", "dmgNegation {name, amount}", "resistance {name, amount}"],
-  ashOfWar: ["name", "image", "description", "affinity", "skill"],
-  boss: ["name", "image", "description", "location", "drops", "healthPoints"],
-  class: ["name", "image", "description", "stats {level, vigor, mind, endurance, strenght, dexterity, inteligence, faith, arcane}"],
-  creature: ["name", "image", "description", "location", "drops"],
-  incantation: ["name", "image", "description", "type", "cost", "slots", "effects", "requires {name, amount}"],
-  item: ["name", "image", "description", "type", "effect"],
-  location: ["name", "image", "description"],
-  npc: ["name", "image", "description", "location", "quote", "role"],
-  shield: ["name", "image", "description", "category", "weight", "attack {name, amount}", "defence {name, amount}", "requiredAttributes {name, amount}", "scalesWith {name, scaling}"],
-  sorcery: ["name", "image", "description", "type", "cost", "slots", "effects", "requires {name, amount}"],
-  spirit: ["name", "image", "description", "fpCost", "hpCost", "effect"],
-  talisman: ["name", "image", "description", "effect"],
-  weapon: ["name", "image", "description", "category", "weight", "attack {name, amount}", "defence {name, amount}", "requiredAttributes {name, amount}", "scalesWith {name, scaling}"],
-}
-
-// Get the fields for the current category, default to an empty array if not found
-const fields = categoryFields[category] || [];
-
-// Construct the fields string for the query
-const fieldsString = fields.join("\n");
-
 // if the category is "class", run a fetch on an api instead of a gql query
-
+//https://eldenring.fanapis.com/api/
 try {
-  if(category === "class") {
-    const response = await fetch(`https://eldenring.fanapis.com/api/classes?name=${weaponName}`);
-    const res = await response.json();
-    weapon = res.data[0];
-  } else {
-    const query = gql`
-      query {
-        ${category}(name: "${capitalizeFirstLetter(weaponName)}") {
-          ${fieldsString}
-        }
-      }
-    `;
+  const response = await fetch(`https://eldenring.fanapis.com/api/${category}/${weaponName}`);
+  const result = await response.json();
 
-      // weight,
-      // attack {name, amount},
-      // defence {name, amount},
-      // requiredAttributes {name, amount},
-      // scalesWith {name, scaling},
-
-  const { data } = await useAsyncQuery(query);
-  // if combine data.value and category
-  if(data.value[category].length > 0) {
-    weapon = data.value[category][0];
-  } else {
-    weapon = mockData.mockCard[0];
-  }
-}
+  weapon = result.data;
 } catch (error) {
   console.error(error);
 }
-
 // weapon = mockData.mockCard[0];
 
 // weaponsList = mockData.mockExtraWeapons;
-
 try {
-  const weaponCategory = weapon.category;
+  const category = route.params.category.slice(0, -1);
+  if(route.params.category === 'weapons' || route.params.category === 'armors' || route.params.category === 'shields') {
+    const weaponCategory = weapon.category;
+  // remove the s from the category name
+  console.log(category)
 
   const query2 = gql`
     query {
-      weapon(category: "${weaponCategory}") {
+        ${category}(category: "${weaponCategory}") {
         name,
         image
       }
@@ -114,10 +58,19 @@ try {
   `;
 
   const { data } = await useAsyncQuery(query2);
-  if (data.value.weapon.length > 0) {
-    weaponsList = data.value.weapon;
+  weaponsList = data.value[category]; 
   } else {
-    weaponsList = mockData.mockExtraWeapons;
+    const query2 = gql`
+    query {
+        ${category}(limit: 10) {
+        name,
+        image
+      }
+    }`;
+
+    const { data } = await useAsyncQuery(query2);
+    console.log(data)
+    weaponsList = data.value[category];
   }
 } catch (error) {
   console.error(error);
@@ -168,6 +121,7 @@ useSeoMeta({
   max-width: 220px;
   height: 88%;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 0 20px;
   box-sizing: border-box;
 }
@@ -188,6 +142,8 @@ useSeoMeta({
   text-decoration: none;
   color: white;
   text-align: center;
+  width: 170px;
+  height: 170px;
 }
 
 .weapon__thumb img {

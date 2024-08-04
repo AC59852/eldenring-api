@@ -7,7 +7,7 @@
         <input type="text" placeholder="Search" v-model="search" class="categories__search">
       </header>
       <section class="categories__items">
-        <NuxtLink :to="`/${route.params.name}/${item.name}`" class="categories__item" v-for="item in items">
+        <NuxtLink :to="`/${route.params.name}/${item.id}`" class="categories__item" v-for="item in items">
           <div class="categories__content">
             <img :src="item.image" alt="Image">
             <h2>{{ item.name }}</h2>
@@ -75,10 +75,8 @@ console.log(route.params.name);
   .categories__wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     gap: 20px;
-    padding: 20px;
+    padding: 30px;
     box-sizing: border-box;
     width: 100%;
     max-width: 1500px;
@@ -131,16 +129,17 @@ console.log(route.params.name);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    gap: 70px 15px;
+    gap: 30px 10px;
     width: 100%;
     max-width: 1500px;
     overflow: auto;
+    align-items: start;
   }
 
   .categories__item {
     text-align: center;
     text-decoration: none;
-    width: 225px;
+    width: 210px;
     transition: all 0.1s ease-in-out;
     position: relative;
   }
@@ -157,12 +156,15 @@ console.log(route.params.name);
     position: absolute;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 25px;
     box-sizing: border-box;
     gap: 15px;
+    border-radius: 15px;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
   }
 
-  .categories__content img:hover {
+  .categories__content:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
 
@@ -170,7 +172,6 @@ console.log(route.params.name);
     width: 100%;
     box-sizing: border-box;
     margin: 0 auto;
-    border-radius: 15px;
     height: 100%;
     object-fit: cover;
     object-position: center;

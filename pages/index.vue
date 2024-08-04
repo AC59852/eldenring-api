@@ -35,7 +35,6 @@
     { id: 2, name: 'Armors', route: 'armors' },
     { id: 3, name: 'Ashes of War', route: 'ashes' },
     { id: 4, name: 'Bosses', route: 'bosses' },
-    { id: 5, name: 'Classes', route: 'classes' },
     { id: 6, name: 'Creatures', route: 'creatures'},
     { id: 7, name: 'Incantations', route: 'incantations'},
     { id: 8, name: 'Items', route: 'items'},
@@ -85,7 +84,7 @@
   border: 1px solid rgba( 255, 255, 255, 0.18 );
   width: 60%;
   max-width: 1300px;
-  padding: 60px 60px;
+  padding: 80px 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
